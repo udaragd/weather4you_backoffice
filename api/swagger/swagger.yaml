@@ -1,0 +1,68 @@
+swagger: "2.0"
+info:
+  description: "Weather Data Capture For Recherch MSc IT SLIIT"
+  version: "1.0.0"
+  title: "G.D.U.L Sampath - Weather Data Capture"
+  termsOfService: ""
+
+host: "localhost:3000"
+basePath: "/api/v1"
+schemes:
+- "http"
+
+paths:
+  /weather/saveWeatherData:
+    post:
+      tags:
+      - "Add Weather Data"
+      summary: "Add Weather Data"
+      description: ""
+      operationId: "capturedWeatherData"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          items:
+          - $ref: "#/definitions/capturedWeatherData"
+      responses:
+        400:
+          description: "Weather Data Added Unsuccessful"
+        404:
+          description: "Weather Data Added Unsuccessful"
+        405:
+          description: "Weather Data Added Unsuccessful"
+
+definitions:
+  capturedWeatherData:
+    type: "object"
+    properties:
+      station_id:
+        type: "integer"
+      temperature:
+        type: "string"
+      humidity:
+        type: "string"
+      light_intensity:
+        type: "string"
+      rain_water_level:
+        type: "string"
+      pressure:
+        type: "string"
+      gps:
+        type: "string"
+      noise:
+        type: "string"
+      gas:
+        type: "string"
+      uv:
+        type: "string"
+      rain_detection:
+        type: "string"
+      rainfall_intensity:
+        type: "string"
+    xml:
+      name: "capturedWeatherData"
