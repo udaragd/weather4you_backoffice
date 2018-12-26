@@ -32,7 +32,7 @@
         "tags": [
           "WeatherData"
         ],
-        "description": "Create new user in system",
+        "description": "Create new weather data in system",
         "parameters": [
           {
             "name": "body",
@@ -56,6 +56,161 @@
         }
       }
     },
+
+    "/user/saveUser": {
+      "post": {
+        "tags": [
+          "UserData"
+        ],
+        "description": "Create new user in system",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User data that we want to save",
+            "schema": {
+              "$ref": "#/definitions/userData"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "User data is successfully saved",
+            "schema": {
+              "$ref": "#/definitions/userData"
+            }
+          }
+        }
+      }
+    },
+
+    "/sensor/saveSensor": {
+      "post": {
+        "tags": [
+          "SensorData"
+        ],
+        "description": "Create new Sensor in system",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Sensor data that we want to save",
+            "schema": {
+              "$ref": "#/definitions/sensorData"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Sensor data is successfully saved",
+            "schema": {
+              "$ref": "#/definitions/sensorData"
+            }
+          }
+        }
+      }
+    },
+
+    "/sensor/getStationSensorData": {
+      "post": {
+        "tags": [
+          "SensorData"
+        ],
+        "description": "Get Station Sensor Data",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Get Station Sensor Data that we want to save",
+            "schema": {
+              "$ref": "#/definitions/stationId"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Sensor Data Retrive login successfully",
+            "schema": {
+              "$ref": "#/definitions/stationId"
+            }
+          }
+        }
+      }
+    },
+
+
+    "/user/login": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "description": "User Login",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User data that we want to save",
+            "schema": {
+              "$ref": "#/definitions/loginUserData"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "User login successfully",
+            "schema": {
+              "$ref": "#/definitions/loginUserData"
+            }
+          }
+        }
+      }
+    },
+
+
+    "/sensor/updateSensorStatus": {
+      "put": {
+        "tags": [
+          "SensorData"
+        ],
+        "description": "Sensor Data Update",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Sensor data that we want to Update",
+            "schema": {
+              "$ref": "#/definitions/updateSensorData"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Sensor Data Update successfully",
+            "schema": {
+              "$ref": "#/definitions/updateSensorData"
+            }
+          }
+        }
+      }
+    },
+
+
+
     "/weather/getAllWeatherData": {
       "get": {
         "tags": [
@@ -71,7 +226,25 @@
           }
         }
       }
+    },
+
+    "/user/getAllUsers": {
+      "get": {
+        "tags": [
+          "UserData"
+        ],
+        "summary": "Get All Saved User Data",
+        "responses": {
+          "200": {
+            "description": "User Data Is Found. With Last 10 Weather Data",
+            "schema": {
+              "$ref": ""
+            }
+          }
+        }
+      }
     }
+
   },
   "definitions": {
     "capturedWeatherData": {
@@ -113,6 +286,83 @@
           "type": "string"
         }
       }
+    },
+
+    "userData": {
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "userAddress": {
+          "type": "string"
+        },
+        "userTelephone": {
+          "type": "string"
+        },
+        "userStation": {
+          "type": "string"
+        },
+        "userEmail": {
+          "type": "string"
+        },
+        "userPassword": {
+          "type": "string"
+        }
+      }
+    },
+
+
+    "sensorData": {
+      "properties": {
+        "stationId": {
+          "type": "string"
+        },
+        "sensorId": {
+          "type": "string"
+        },
+        "sensorName": {
+          "type": "string"
+        },
+        "activeStatus": {
+          "type": "string"
+        }
+      }
+    },
+
+
+    "loginUserData": {
+      "properties": {
+        "userEmail": {
+          "type": "string"
+        },
+        "userPassword": {
+          "type": "string"
+        }
+      }
+    },
+
+    "stationId": {
+      "properties": {
+        "stationId": {
+          "type": "string"
+        }
+      }
+    },
+
+    "updateSensorData": {
+      "properties": {
+        "stationId": {
+          "type": "string"
+        },
+        "sensorId": {
+          "type": "string"
+        },
+        "activeStatus": {
+          "type": "string"
+        }
+      }
     }
+
+
   }
 }
